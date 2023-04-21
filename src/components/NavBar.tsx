@@ -21,12 +21,14 @@ const drawerWidth = 240;
 interface Props {
 }
 
-export default function ResponsiveDrawer(props: Props) {
+let menuItems: string[] = ["Inbox", "Starred", "Send email", "Drafts"]
+
+const NavBar: React.FC = (props: Props) => {
   return (
     <div>
       <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {menuItems.map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -53,3 +55,6 @@ export default function ResponsiveDrawer(props: Props) {
     </div>
   );
 }
+
+
+export default NavBar
