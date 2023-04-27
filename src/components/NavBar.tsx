@@ -15,46 +15,55 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { NavBarItem } from "../utils/navbar-items";
 
 const drawerWidth = 240;
 
-interface Props {
+type NavBarProps = {
+  navBarItems: NavBarItem[];
+  onItemClick: (item: NavBarItem) => void;
+};
+
+type NavBarState = {
+  selected: NavBarItem;
+};
+
+class NavBar extends React.Component<NavBarProps, NavBarState> {
+  constructor(props: NavBarProps) {
+    super(props);
+    this.state = { selected: props.navBarItems[0]};
+  }
+
+  selectListItem(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    item: NavBarItem
+  ) {
+    this.setState({ selected: item });
+    this.props.onItemClick(item);
+  }
+
+  render() {
+    const { navBarItems } = this.props;
+    const { selected } = this.state;
+
+    return (
+      <div>
+        <Divider />
+        <List>
+          {navBarItems.map((item, index) => (
+            <ListItem key={item} disablePadding>
+              <ListItemButton
+                selected={selected === item}
+                onClick={(event) => this.selectListItem(event, item)}
+              >
+                <ListItemText primary={item} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </div>
+    );
+  }
 }
 
-let menuItems: string[] = ["Inbox", "Starred", "Send email", "Drafts"]
-
-const NavBar: React.FC = (props: Props) => {
-  return (
-    <div>
-      <Divider />
-      <List>
-        {menuItems.map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-}
-
-
-export default NavBar
+export default NavBar;
