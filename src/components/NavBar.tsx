@@ -31,7 +31,7 @@ type NavBarState = {
 class NavBar extends React.Component<NavBarProps, NavBarState> {
   constructor(props: NavBarProps) {
     super(props);
-    this.state = { selected: props.navBarItems[0]};
+    this.state = { selected: props.navBarItems[0] };
   }
 
   selectListItem(

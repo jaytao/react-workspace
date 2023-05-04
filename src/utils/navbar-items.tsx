@@ -1,11 +1,11 @@
 export enum NavBarItem {
   Cloudflare = "Cloudflare",
   Commands = "Commands",
-  ChatGPT = "ChatGPT",
+  Format = "Format JSON/YML",
 }
 
 export const navBarItems = [
   NavBarItem.Cloudflare,
   NavBarItem.Commands,
-  NavBarItem.ChatGPT,
+  NavBarItem.Format,
 ];

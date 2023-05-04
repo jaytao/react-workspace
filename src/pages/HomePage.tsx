@@ -6,6 +6,8 @@ import Paper from "@mui/material/Paper";
 import { navBarItems, NavBarItem } from "../utils/navbar-items";
 import CloudflareComponent from "../components/Cloudflare";
 import CommandsComponent from "../components/Commands";
+import FormatComponent from "../components/Format";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -33,14 +35,15 @@ class HomePage extends React.Component<{}, HomePageState> {
   }
 
   chooseComponent() {
-    const { selectedItem } = this.state
+    const { selectedItem } = this.state;
     if (selectedItem === NavBarItem.Cloudflare) {
-      return <CloudflareComponent />
+      return <CloudflareComponent />;
+    } else if (selectedItem === NavBarItem.Commands) {
+      return <CommandsComponent />;
+    } else if (selectedItem === NavBarItem.Format) {
+      return <FormatComponent />;
     }
-    else if (selectedItem === NavBarItem.Commands) {
-      return <CommandsComponent />
-    }
-    return "Found nothing"
+    return "Found nothing";
   }
   render() {
     return (
@@ -58,7 +61,7 @@ class HomePage extends React.Component<{}, HomePageState> {
           />
         </Grid>
         <Grid item xs={10}>
-          <Item sx={{'text-align': 'left'}}>{this.chooseComponent()}</Item>
+          <Item sx={{ "text-align": "left" }}>{this.chooseComponent()}</Item>
         </Grid>
       </Grid>
     );

@@ -4,4 +4,4 @@ const CloudflareComponent = () => {
   return <div>Hey I'm Cloudflare</div>;
 };
 
-export default CloudflareComponent
+export default CloudflareComponent;
