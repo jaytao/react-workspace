@@ -32,7 +32,17 @@ const CommandsComponent = () => {
           function: codeBlock("cat foo.json | jq '.[] | {name, color}'"),
         },
       ],
-    }
+    },
+    {
+      header: "Misc Bash",
+      items: [
+        {
+          name: "sed/gsed replace expression in file",
+          function: codeBlock("sed -i 's/old-text/new-text/g' input.txt"),
+        },
+      ],
+    },
+
   ];
 
   const contentJSX = content.map((header, _) => (
