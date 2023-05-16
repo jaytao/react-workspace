@@ -21,6 +21,21 @@ const CommandsComponent = () => {
       ],
     },
     {
+      header: "k8s",
+      items: [
+        {
+          name: "Pull all kong plugins",
+          function: codeBlock("kubectl get KongPlugin -A"),
+        },
+        {
+          name: "Kustomize build",
+          function: codeBlock(
+            "kustomize build --enable-helm --load-restrictor LoadRestrictionsNone ."
+          ),
+        },
+      ],
+    },
+    {
       header: "jq",
       items: [
         {
@@ -42,7 +57,6 @@ const CommandsComponent = () => {
         },
       ],
     },
-
   ];
 
   const contentJSX = content.map((header, _) => (
